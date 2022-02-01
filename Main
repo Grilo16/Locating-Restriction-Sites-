@@ -1,1 +1,14 @@
+def Fastalist(File):
+    file = open(File).read().split("\n")
+    Fastalist = []
+    for line in file:
+        if str(line).startswith(">"):
+            Fastalist.append(line)
+        else:
+            if Fastalist[-1].startswith(">"):
+                Fastalist.append(line)
+            else:
+                Fastalist[-1] = Fastalist[-1] + line
+    return Fastalist
 
+print(Fastalist("Dataset"))
