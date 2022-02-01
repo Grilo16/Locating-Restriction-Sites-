@@ -14,3 +14,57 @@ def Fastalist(File):
 String = Fastalist("Dataset")[1]
 
 print(Fastalist("Dataset"))
+
+
+from Bio_data_lib import Bio_functions as biofunctions
+
+Datalist = biofunctions.Fastalist("Dataset")
+String = Datalist[1]
+
+#print(String)
+def walker(String, S,F):
+    DNAdict = {"A":"T", "T":"A", "G":"C", "C":"G"}
+    s = S
+    f = F
+    testing2 = []
+    testing = []
+    indexes = []
+    for char in range(len(String)):
+        MinPal = String[s:f]
+        testing.append(MinPal)
+        testing2.append("".join([DNAdict[k] for k in MinPal])[::-1])
+        if len(MinPal) == f-s:
+            s += 1
+            f += 1
+            if testing[-1] == testing2[-1]:
+               indexes.append(f - (f-s))
+    return indexes
+
+def ReverseComplement(String):
+    DNAdict = {"A":"T", "T":"A", "G":"C", "C":"G"}
+    return "".join([DNAdict[k] for k in String])[::-1]
+
+x = 3
+y = x + 4
+output = []
+for i in range(4,13):
+    #print(walker(String,0,i),i)
+    for item in walker(String,0,i):
+        string = item, i
+        output.append(string)
+print(output)
+foutput = sorted(output)
+
+position = []
+length = []
+for i in foutput:
+    position.append(i[0])
+    length.append(i[1])
+
+res = "\n".join("{} {}".format(x, y) for x, y in zip(position, length))
+print(position)
+print(length)
+
+print(sorted(output))
+print(res)
+
