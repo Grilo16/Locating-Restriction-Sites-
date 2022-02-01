@@ -11,4 +11,6 @@ def Fastalist(File):
                 Fastalist[-1] = Fastalist[-1] + line
     return Fastalist
 
+String = Fastalist("Dataset")[1]
+
 print(Fastalist("Dataset"))
